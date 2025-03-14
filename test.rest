@@ -1,0 +1,31 @@
+# GET all contacts
+GET http://localhost:3000/users
+
+# GET contact by ID
+GET http://localhost:3000/users/67cece97bb3b9f73c3d1388d
+
+# POST new contact
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "test1@gmail.com",
+  "username": "test1",
+  "name": "John",
+  "ip address": "0.0.0.0/0"
+}
+
+
+# PUT update contact
+PUT http://localhost:3000/users/67cecf3fbb3b9f73c3d1388e
+Content-Type: application/json
+
+{
+  "email": "test2@gmail.com",
+  "username": "test2",
+  "name": "James",
+  "ip address": "0.0.0.0/0"
+}
+
+# DELETE contact
+DELETE http://localhost:3000/users/67cecf59bb3b9f73c3d1388f
