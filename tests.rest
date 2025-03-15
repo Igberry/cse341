@@ -3,7 +3,7 @@ GET http://localhost:3000/users
 
 ###
 # GET contact by ID
-GET http://localhost:3000/users/67cecf3fbb3b9f73c3d1388e
+GET http://localhost:3000/users/67d5a17d6f2c6bad0a6df3d2
 
 ###
 
@@ -12,24 +12,24 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "email": "test1@gmail.com",
-  "username": "test1",
-  "name": "John",
+  "email": "test9@gmail.com",
+  "username": "test9",
+  "name": "Matthew",
   "ipaddress": "0.0.0.0/0"
 }
 
 ###
 # PUT update contact
-PUT http://localhost:3000/users/67d45a9cd5b5612d35e9f5ae
+PUT http://localhost:3000/users/67d5a44a29132201f8e6647e
 Content-Type: application/json
 
 {
-  "email": "test2@gmail.com",
-  "username": "test2",
-  "name": "James",
+  "email": "test10@gmail.com",
+  "username": "test10",
+  "name": "Frank",
   "ipaddress": "0.0.0.0/0"
 }
 
 ###
 # DELETE contact
-DELETE http://localhost:3000/users/67d599f47272910dd6c98632
+DELETE http://localhost:3000/users/67cecf3fbb3b9f73c3d1388e
