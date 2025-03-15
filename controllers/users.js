@@ -25,11 +25,11 @@ const createUser = async (req, res) => {
     const userId = new ObjectId (req.params.id);
     const user = {
         email: req.body.email,
-        username: req.bosy.username,
+        username: req.body.username,
         name: req.body.name,
         ipaddress: req.body.ipaddress,
     };
-    const response = await mongodb.getDatabase().db().collection('users').insertOne({_Id: userId}, user);
+    const response = await mongodb.getDatabase().db().collection('users').insertOne(user);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
@@ -42,11 +42,11 @@ const updateUser = async (req, res) => {
     const userId = new ObjectId (req.params.id);
     const user = {
         email: req.body.email,
-        username: req.bosy.username,
+        username: req.body.username,
         name: req.body.name,
         ipaddress: req.body.ipaddress,
     };
-    const response = await mongodb.getDatabase().db().collection('users').replaceOne({_Id: userId}, user);
+    const response = await mongodb.getDatabase().db().collection('users').replaceOne({_id: userId}, user);
     if (response.modifiedCount > 0) {
         res.status(204).send();
     } else {
@@ -57,8 +57,8 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     //#swagger.tags = [Users]
     const userId = new ObjectId (req.params.id);
-    const response = await mongodb.getDatabase().db().collection('users').deleteOne({_Id: userId});
-    if (response.deleteCount > 0) {
+    const response = await mongodb.getDatabase().db().collection('users').deleteOne({_id: userId});
+    if (response.deletedCount > 0) {
         res.status(204).send();
     } else {
         res.status(500).json(response.error || 'Some error occured while updating the user');
