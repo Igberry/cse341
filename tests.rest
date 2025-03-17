@@ -12,24 +12,30 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "email": "test9@gmail.com",
-  "username": "test9",
-  "name": "Matthew",
+  "firstName" : "Faithya",
+  "lastName": "Mayor",
+  "username": "test6",
+  "email": "test6@gmail.com",
+  "favoriteColor" : "Yellow",
+  "birthday" : "14/September/1997",
   "ipaddress": "0.0.0.0/0"
 }
 
 ###
 # PUT update contact
-PUT http://localhost:3000/users/67d5a44a29132201f8e6647e
+PUT http://localhost:3000/users/67d84592b213616526ff9c4e
 Content-Type: application/json
 
 {
-  "email": "test10@gmail.com",
-  "username": "test10",
-  "name": "Frank",
+  "firstName" : "Moses",
+  "lastName": "Matthew",
+  "username": "test2",
+  "email": "test2@gmail.com",
+  "favoriteColor" : "Blue",
+  "birthday" : "20/March/1986",
   "ipaddress": "0.0.0.0/0"
 }
 
 ###
 # DELETE contact
-DELETE http://localhost:3000/users/67cecf3fbb3b9f73c3d1388e
+DELETE http://localhost:3000/users/67d5a4e729132201f8e6647f

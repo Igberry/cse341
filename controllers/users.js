@@ -29,9 +29,12 @@ const getSingle = async (req, res) => {
 const createUser = async (req, res) => {
     //#swagger.tags = [Users]
     const user = {
-        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         username: req.body.username,
-        name: req.body.name,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday,
         ipaddress: req.body.ipaddress
     };
 
@@ -52,9 +55,12 @@ const updateUser = async (req, res) => {
     //#swagger.tags = [Users]
     const userId = new ObjectId(req.params.id);
     const user = {
-        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         username: req.body.username,
-        name: req.body.name,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday,
         ipaddress: req.body.ipaddress
     };
 
