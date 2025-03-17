@@ -12,12 +12,12 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "firstName" : "Faithya",
-  "lastName": "Mayor",
-  "username": "test6",
-  "email": "test6@gmail.com",
-  "favoriteColor" : "Yellow",
-  "birthday" : "14/September/1997",
+  "firstName" : "Jacob",
+  "lastName": "Awolowo",
+  "username": "test7",
+  "email": "test7@gmail.com",
+  "favoriteColor" : "Purple",
+  "birthday" : "26/February/2001",
   "ipaddress": "0.0.0.0/0"
 }
 
