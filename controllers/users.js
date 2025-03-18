@@ -35,7 +35,7 @@ const createUser = async (req, res) => {
         email: req.body.email,
         favoriteColor: req.body.favoriteColor,
         birthday: req.body.birthday,
-        ipaddress: req.body.ipaddress
+        ipaddress: req.body.ipaddress,
     };
 
     try {

@@ -1,0 +1,43 @@
+### Get all users
+GET http://localhost:3000/users
+Content-Type: application/json
+
+### Create a new user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "firstName": "Mildred",
+  "lastName": "Dame",
+  "username": "miles",
+  "password": "secure",
+  "email": "miles@example.com",
+  "favoriteColor": "Yellow",
+  "birthday": "13/June/2002",
+  "ipaddress" : "0.0.0.0/0",
+  "country": "Nigeria"
+}
+
+### Get a user by ID (Replace {id} with an actual user ID)
+GET http://localhost:3000/users/67d9edff98527c462e432435
+Content-Type: application/json
+
+### Update a user by ID (Replace {id} with an actual user ID)
+PUT http://localhost:3000/users/67d9edff98527c462e432435
+Content-Type: application/json
+
+{
+  "firstName": "Mildred",
+  "lastName": "Dame",
+  "username": "milly",
+  "password": "pass1",
+  "email": "mildred@gmail.com",
+  "favoriteColor": "Yellow",
+  "birthday": "13/June/2002",
+  "ipaddress" : "0.0.0.0/0",
+  "country": "Nigeria"
+}
+
+### Delete a user by ID (Replace {id} with an actual user ID)
+DELETE http://localhost:3000/users/67d8477fb213616526ff9c53
+Content-Type: application/json
