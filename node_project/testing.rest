@@ -1,43 +1,43 @@
 ### Get all users
-GET http://localhost:3000/users
+GET http://localhost:3000/clients
 Content-Type: application/json
 
 ### Create a new user
-POST http://localhost:3000/users
+POST http://localhost:3000/clients
 Content-Type: application/json
 
 {
-  "firstName": "Mildred",
-  "lastName": "Dame",
-  "username": "miles",
-  "password": "secure",
-  "email": "miles@example.com",
-  "favoriteColor": "Yellow",
-  "birthday": "13/June/2002",
+  "firstName": "Jordan",
+  "lastName": "Tyrone",
+  "username": "Jty",
+  "password": "secure189",
+  "email": "jtyrone@example.com",
+  "favoriteColor": "Grey",
+  "birthday": "16/April/1998",
   "ipaddress" : "0.0.0.0/0",
-  "country": "Nigeria"
+  "country": "Canada"
 }
 
 ### Get a user by ID (Replace {id} with an actual user ID)
-GET http://localhost:3000/users/67d9edff98527c462e432435
+GET http://localhost:3000/clients/67daefbb595c7fa18a761c29
 Content-Type: application/json
 
 ### Update a user by ID (Replace {id} with an actual user ID)
-PUT http://localhost:3000/users/67d9edff98527c462e432435
+PUT http://localhost:3000/clients/67daefbb595c7fa18a761c29
 Content-Type: application/json
 
 {
-  "firstName": "Mildred",
-  "lastName": "Dame",
-  "username": "milly",
+  "firstName": "James",
+  "lastName": "Babatunde",
+  "username": "jbabaT",
   "password": "pass1",
-  "email": "mildred@gmail.com",
-  "favoriteColor": "Yellow",
-  "birthday": "13/June/2002",
+  "email": "jbaba@gmail.com",
+  "favoriteColor": "Green",
+  "birthday": "29/June/1990",
   "ipaddress" : "0.0.0.0/0",
   "country": "Nigeria"
 }
 
 ### Delete a user by ID (Replace {id} with an actual user ID)
-DELETE http://localhost:3000/users/67d8477fb213616526ff9c53
+DELETE http://localhost:3000/clients/67daef80595c7fa18a761c26
 Content-Type: application/json
