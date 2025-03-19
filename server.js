@@ -1,46 +1,46 @@
+require('dotenv').config({ path: __dirname + '/.env' }); // Ensure dotenv loads the correct file
 const express = require('express');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const mongodb = require('./data/database');
 const cors = require('cors');
-
-dotenv.config();
+const connectDB = require('./config/db'); // Import the DB connection function
+const fs = require('fs');
+const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type, Authorization']
-  }));
-
+app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] }));
 app.use(bodyParser.json());
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow_Origin', '*');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
-    );
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    next();
+
+// Log when routes are loaded
+console.log("Setting up routes...");
+
+// Test Route
+app.get('/', (req, res) => {
+    res.send("Welcome to your CRUD API!");
 });
 
-// Routes
-const routes = require('./routes/index');
-app.use('/', routes);
+// API Routes
+const clientsRoutes = require('./routes/clients');
+app.use('/clients', clientsRoutes);
 
-// Initialize Database and Start Server
-mongodb.initDb((err) => {
-    if (err) {
-        console.error("Database connection failed:", err);
-        process.exit(1); // Exit process on failure
-    } else {
-        app.listen(port, () => {
-            console.log(`Database connected successfully`);
-            console.log(`Server is running on http://localhost:${port}`);
-        });
-    }
+console.log("Clients route loaded");
+
+// Swagger Docs
+const swaggerDocument = JSON.parse(fs.readFileSync(__dirname + '/swagger.json', 'utf-8'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Connect to MongoDB
+connectDB()
+  .then(() => console.log("✅ MongoDB connected successfully"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
+
+// Start Server
+app.listen(port, () => {
+    console.log(`🚀 Server running on http://localhost:${port}`);
+    console.log(`📄 Swagger Docs available at http://localhost:${port}/api-docs`);
 });

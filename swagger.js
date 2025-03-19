@@ -1,15 +1,28 @@
-const swaggerAutogen = require('swagger-autogen')();
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
-const docs = {
+const options = {
+  definition: {
+    openapi: '3.0.0',
     info: {
-      title: "Users Api",
-      description: "Users Api",
+      title: 'Client API',
+      version: '1.0.0',
+      description: 'API for managing users',
     },
-    host: 'cse341-30rh.onrender.com',
-    schemes: ['https'],
-  };
+    servers: [
+      {
+        url: 'https://cse341-30rh.onrender.com',
+        description: 'Live server',
+      },
+    ],
+  },
+  apis: ['./routes/*.js'], // Make sure this path matches where your routes are
+};
 
-const outputFile = './swagger.json';
-const endpointsFile = ['./routes/index.js'];
+const swaggerSpec = swaggerJsdoc(options);
 
-swaggerAutogen(outputFile, endpointsFile, docs);
+const setupSwagger = (app) => {
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+};
+
+module.exports = setupSwagger;
