@@ -1,253 +1,316 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-      "title": "Client API",
-      "version": "1.0.0",
-      "description": "API for managing clients"
-    },
-    "servers": [
-      {
-        "url": "https://cse341-30rh.onrender.com",
-        "description": "Live Server"
-      }
-    ],
-    "paths": {
-      "/clients": {
-        "get": {
-          "summary": "Get all clients",
-          "operationId": "getClients",
-          "responses": {
-            "200": {
-              "description": "A list of clients",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/Client"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "summary": "Create a new client",
-          "operationId": "createClient",
-          "requestBody": {
-            "required": true,
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Client API",
+    "version": "1.0.0",
+    "description": "API for managing clients and orders"
+  },
+  "servers": [
+    {
+      "url": "https://cse341-30rh.onrender.com",
+      "description": "Live Server"
+    }
+  ],
+  "paths": {
+    "/clients": {
+      "get": {
+        "summary": "Get all clients",
+        "operationId": "getClients",
+        "responses": {
+          "200": {
+            "description": "A list of clients",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "firstName": { "type": "string", "example": "John" },
-                    "lastName": { "type": "string", "example": "Doe" },
-                    "username": { "type": "string", "example": "johndoe123" },
-                    "email": { "type": "string", "format": "email", "example": "johndoe@example.com" },
-                    "password": { "type": "string", "example": "securepassword123" },
-                    "favoriteColor": { "type": "string", "example": "Blue" },
-                    "birthday": { "type": "string", "example":"15/January/2000" },
-                    "ipaddress": {"type": "string", "example": "0.0.0.0/0"},
-                    "country": { "type": "string", "example": "USA" }
-                  },
-                  "required": [
-                    "firstName",
-                    "lastName",
-                    "username",
-                    "email",
-                    "password",
-                    "favoriteColor",
-                    "birthday",
-                    "ipaddress",
-                    "country"
-                  ]
-                }
-              }
-            }
-          },
-          "responses": {
-            "201": {
-              "description": "Client created successfully"
-            },
-            "400": {
-              "description": "Invalid input - All fields are required"
-            }
-          }
-        }
-      },
-      "/clients/{id}": {
-        "get": {
-          "summary": "Get client by ID",
-          "operationId": "getClientById",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Client data",
-              "content": {
-                "application/json": {
-                  "schema": {
+                  "type": "array",
+                  "items": {
                     "$ref": "#/components/schemas/Client"
                   }
                 }
               }
-            },
-            "404": {
-              "description": "Client not found"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new client",
+        "operationId": "createClient",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Client"
+              }
             }
           }
         },
-        "put": {
-          "summary": "Update client by ID",
-          "operationId": "updateClient",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "firstName": { "type": "string", "example": "John" },
-                    "lastName": { "type": "string", "example": "Doe" },
-                    "username": { "type": "string", "example": "johndoe123" },
-                    "email": { "type": "string", "format": "email", "example": "johndoe@example.com" },
-                    "password": { "type": "string", "example": "securepassword123" },
-                    "favoriteColor": { "type": "string", "example": "Blue" },
-                    "birthday": { "type": "string", "example": "15/February/2000" },
-                    "ipaddress": {"type": "string", "example": "0.0.0.0/0"},
-                    "country": { "type": "string", "example": "USA" }
-                  },
-                  "required": [
-                    "firstName",
-                    "lastName",
-                    "username",
-                    "email",
-                    "password",
-                    "favoriteColor",
-                    "birthday",
-                    "ipaddress",
-                    "country"
-                  ]
-                }
-              }
-            }
+        "responses": {
+          "201": {
+            "description": "Client created successfully"
           },
-          "responses": {
-            "200": {
-              "description": "Client updated successfully"
-            },
-            "400": {
-              "description": "Invalid input - All fields are required"
-            },
-            "404": {
-              "description": "Client not found"
-            }
-          }
-        },
-        "delete": {
-          "summary": "Delete client by ID",
-          "operationId": "deleteClient",
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "schema": {
-                "type": "string"
-              }
-            }
-          ],
-          "responses": {
-            "204": {
-              "description": "Client deleted successfully"
-            },
-            "404": {
-              "description": "Client not found"
-            }
+          "400": {
+            "description": "Invalid input - All fields are required"
           }
         }
       }
     },
-    "components": {
-      "schemas": {
-        "Client": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string",
-              "example": "60a7c4795e35f2d9a9b62f7b"
-            },
-            "firstName": {
-              "type": "string",
-              "example": "John"
-            },
-            "lastName": {
-              "type": "string",
-              "example": "Doe"
-            },
-            "username": {
-              "type": "string",
-              "example": "johndoe123"
-            },
-            "email": {
-              "type": "string",
-              "format": "email",
-              "example": "johndoe@example.com"
-            },
-            "password": {
-              "type": "string",
-              "example": "securepassword123"
-            },
-            "favoriteColor": {
-              "type": "string",
-              "example": "Blue"
-            },
-            "birthday": {
-              "type": "string",
-              "example": "15/January/2000"
-            },
-            "ipaddress": {
-                "type": "string",
-                "example": "0.0.0.0/0"
-            },
-            "country": {
-              "type": "string",
-              "example": "USA"
+    "/clients/{id}": {
+      "get": {
+        "summary": "Get client by ID",
+        "operationId": "getClientById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client"
+                }
+              }
             }
           },
-          "required": [
-            "firstName",
-            "lastName",
-            "username",
-            "email",
-            "password",
-            "favoriteColor",
-            "birthday",
-            "ipaddress",
-            "country"
-          ]
+          "404": {
+            "description": "Client not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update client by ID",
+        "operationId": "updateClient",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Client"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Client updated successfully"
+          },
+          "400": {
+            "description": "Invalid input - All fields are required"
+          },
+          "404": {
+            "description": "Client not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete client by ID",
+        "operationId": "deleteClient",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Client deleted successfully"
+          },
+          "404": {
+            "description": "Client not found"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Get all orders",
+        "operationId": "getOrders",
+        "responses": {
+          "200": {
+            "description": "A list of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Order"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new order",
+        "operationId": "createOrder",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Order created successfully"
+          },
+          "400": {
+            "description": "Invalid input - Required fields missing"
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "summary": "Get order by ID",
+        "operationId": "getOrderById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update order by ID",
+        "operationId": "updateOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order updated successfully"
+          },
+          "400": {
+            "description": "Invalid input - Required fields missing"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete order by ID",
+        "operationId": "deleteOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Order deleted successfully"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Client": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "60a7c4795e35f2d9a9b62f7b" },
+          "firstName": { "type": "string", "example": "John" },
+          "lastName": { "type": "string", "example": "Doe" },
+          "username": { "type": "string", "example": "johndoe123" },
+          "email": { "type": "string", "format": "email", "example": "johndoe@example.com" },
+          "password": { "type": "string", "example": "securepassword123" },
+          "favoriteColor": { "type": "string", "example": "Blue" },
+          "birthday": { "type": "string", "example": "15/January/2000" },
+          "ipaddress": { "type": "string", "example": "0.0.0.0/0" },
+          "country": { "type": "string", "example": "USA" }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "60a7c4795e35f2d9a9b62f8c" },
+          "clientId": { "type": "string", "example": "60a7c4795e35f2d9a9b62f7b" },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "productName": { "type": "string", "example": "123456abcdef" },
+                "quantity": { "type": "integer", "example": 2 },
+                "price": {"type": "number", "example": "100.25"}
+              }
+            }
+          },
+          "totalAmount": { "type": "number", "example": 50.99 }
         }
       }
     }
   }
-  
+}

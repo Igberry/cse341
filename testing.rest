@@ -14,7 +14,7 @@ Content-Type: application/json
   "email": "jtyrone@example.com",
   "favoriteColor": "Grey",
   "birthday": "16/April/1998",
-  "ipaddress" : "0.0.0.0/0",
+  "ipaddress": "0.0.0.0/0",
   "country": "Canada"
 }
 
@@ -34,10 +34,58 @@ Content-Type: application/json
   "email": "jbaba@gmail.com",
   "favoriteColor": "Green",
   "birthday": "29/June/1990",
-  "ipaddress" : "0.0.0.0/0",
+  "ipaddress": "0.0.0.0/0",
   "country": "Nigeria"
 }
 
 ### Delete a user by ID (Replace {id} with an actual user ID)
 DELETE http://localhost:3000/clients/67daef80595c7fa18a761c26
+Content-Type: application/json
+
+---
+
+### **Orders API**
+
+### Get all orders
+GET http://localhost:3000/orders
+Content-Type: application/json
+
+### Create a new order
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "clientId": "67daf043595c7fa18a761c30",
+  "items": [
+    {
+      "productName": "Bag Pack",
+      "quantity": 3,
+      "price": 3000
+    }
+  ],
+  "totalAmount": 9000
+}
+
+### Get an order by ID (Replace {id} with an actual order ID)
+GET http://localhost:3000/orders/67dd303f09dff46d1edbb84f
+Content-Type: application/json
+
+### Update an order by ID (Replace {id} with an actual order ID)
+PUT http://localhost:3000/orders/67dd303f09dff46d1edbb84f
+Content-Type: application/json
+
+{
+  "clientId": "67daefbb595c7fa18a761c29",
+  "items": [
+    {
+      "productName": "Vanilla Cake",
+      "quantity": 3,
+      "price": 7500
+    }
+  ],
+  "totalAmount": 22500
+}
+
+### Delete an order by ID (Replace {id} with an actual order ID)
+DELETE http://localhost:3000/orders/67dd303f09dff46d1edbb84f
 Content-Type: application/json

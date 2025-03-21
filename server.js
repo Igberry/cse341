@@ -5,6 +5,8 @@ const cors = require('cors');
 const connectDB = require('./config/db'); // Import the DB connection function
 const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
+const ordersRoutes = require('./routes/orders');
+const clientsRoutes = require('./routes/clients');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,8 +27,9 @@ app.get('/', (req, res) => {
 });
 
 // API Routes
-const clientsRoutes = require('./routes/clients');
 app.use('/clients', clientsRoutes);
+app.use('/orders', ordersRoutes);
+
 
 console.log("Clients route loaded");
 
