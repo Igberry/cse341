@@ -2,6 +2,7 @@ const express = require('express');
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
 const clientsController = require('../controllers/clients');
+const { ensureAuthenticated } = require('../middleware/authMiddleware'); // Import authentication middleware
 
 // Validation middleware for creating or updating a client
 const validateClient = [
@@ -25,11 +26,11 @@ const handleValidationErrors = (req, res, next) => {
     next();
 };
 
-// Routes with validation
-router.get('/', clientsController.getClients);
-router.get('/:id', clientsController.getClientById);
-router.post('/', validateClient, handleValidationErrors, clientsController.createClient);
-router.put('/:id', validateClient, handleValidationErrors, clientsController.updateClient);
-router.delete('/:id', clientsController.deleteClient);
+// Protected Routes (require authentication)
+router.get('/', ensureAuthenticated, clientsController.getClients);
+router.get('/:id', ensureAuthenticated, clientsController.getClientById);
+router.post('/', ensureAuthenticated, validateClient, handleValidationErrors, clientsController.createClient);
+router.put('/:id', ensureAuthenticated, validateClient, handleValidationErrors, clientsController.updateClient);
+router.delete('/:id', ensureAuthenticated, clientsController.deleteClient);
 
 module.exports = router;

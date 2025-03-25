@@ -280,35 +280,84 @@
       "Client": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "60a7c4795e35f2d9a9b62f7b" },
-          "firstName": { "type": "string", "example": "John" },
-          "lastName": { "type": "string", "example": "Doe" },
-          "username": { "type": "string", "example": "johndoe123" },
-          "email": { "type": "string", "format": "email", "example": "johndoe@example.com" },
-          "password": { "type": "string", "example": "securepassword123" },
-          "favoriteColor": { "type": "string", "example": "Blue" },
-          "birthday": { "type": "string", "example": "15/January/2000" },
-          "ipaddress": { "type": "string", "example": "0.0.0.0/0" },
-          "country": { "type": "string", "example": "USA" }
+          "id": {
+            "type": "string",
+            "example": "60a7c4795e35f2d9a9b62f7b"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "username": {
+            "type": "string",
+            "example": "johndoe123"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "johndoe@example.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "securepassword123"
+          },
+          "favoriteColor": {
+            "type": "string",
+            "example": "Blue"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "15/January/2000"
+          },
+          "ipaddress": {
+            "type": "string",
+            "example": "0.0.0.0/0"
+          },
+          "country": {
+            "type": "string",
+            "example": "USA"
+          }
         }
       },
       "Order": {
         "type": "object",
         "properties": {
-          "id": { "type": "string", "example": "60a7c4795e35f2d9a9b62f8c" },
-          "clientId": { "type": "string", "example": "60a7c4795e35f2d9a9b62f7b" },
+          "id": {
+            "type": "string",
+            "example": "60a7c4795e35f2d9a9b62f8c"
+          },
+          "clientId": {
+            "type": "string",
+            "example": "60a7c4795e35f2d9a9b62f7b"
+          },
           "items": {
             "type": "array",
             "items": {
               "type": "object",
               "properties": {
-                "productName": { "type": "string", "example": "123456abcdef" },
-                "quantity": { "type": "integer", "example": 2 },
-                "price": {"type": "number", "example": "100.25"}
+                "productName": {
+                  "type": "string",
+                  "example": "123456abcdef"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 2
+                },
+                "price": {
+                  "type": "number",
+                  "example": "100.25"
+                }
               }
             }
           },
-          "totalAmount": { "type": "number", "example": 50.99 }
+          "totalAmount": {
+            "type": "number",
+            "example": 50.99
+          }
         }
       }
     }
