@@ -44,3 +44,34 @@ passport.deserializeUser(async (id, done) => {
         done(err, null);
     }
 });
+
+// Export function that takes `app` as an argument
+module.exports = (app) => {
+    // Homepage route - Only show first and last name
+    app.get('/', (req, res) => {
+        console.log("Session User on Homepage:", req.session.user);  // Debugging Log
+
+        if (req.session.user) {
+            const fullName = `${req.session.user.firstName} ${req.session.user.lastName}`.trim();
+            res.send(`Logged in as ${fullName}`);
+        } else {
+            res.send("Logged Out");
+        }
+    });
+
+    // GitHub OAuth Callback
+    app.get('/auth/github/callback', passport.authenticate('github', {
+        failureRedirect: '/api/docs',
+        session: true
+    }), (req, res) => {
+        req.session.user = {
+            firstName: req.user.firstName || '',
+            lastName: req.user.lastName || ''
+        };
+
+        console.log("Session User After Login:", req.session.user);  // Debugging Log
+        console.log("req.user:", req.user);  // Debugging Log
+
+        res.redirect('/');
+    });
+};

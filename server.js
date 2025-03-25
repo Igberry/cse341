@@ -8,13 +8,12 @@ const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
 
 const connectDB = require('./config/db'); // Import the DB connection function
-require('./config/passport-config'); // Import Passport.js configuration
 
 const ordersRoutes = require('./routes/orders');
 const clientsRoutes = require('./routes/clients');
 const authRoutes = require('./routes/auth'); // Authentication Routes
 
-const app = express();
+const app = express(); // Initialize app first
 const port = process.env.PORT || 3000;
 
 // Middleware
@@ -33,6 +32,9 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Pass `app` to passport-config AFTER initializing `app`
+require('./config/passport-config')(app);
 
 // Test Route
 app.get('/', (req, res) => {
