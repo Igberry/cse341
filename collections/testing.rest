@@ -8,14 +8,14 @@ Content-Type: application/json
 
 {
   "firstName": "Jordan",
-  "lastName": "Bliss",
-  "username": "jbliss",
+  "lastName": "Tyrone",
+  "username": "Jty",
   "password": "secure189",
-  "email": "jbliss@example.com",
-  "favoriteColor": "Green",
+  "email": "jtyrone@example.com",
+  "favoriteColor": "Grey",
   "birthday": "16/April/1998",
   "ipaddress": "0.0.0.0/0",
-  "country": "Denmark"
+  "country": "Canada"
 }
 
 ### Get a user by ID (Replace {id} with an actual user ID)

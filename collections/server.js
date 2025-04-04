@@ -1,29 +1,31 @@
-require('dotenv').config({ path: __dirname + '/.env' });
+require('dotenv').config({ path: __dirname + '/.env' }); // Ensure dotenv loads the correct file
 const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
 
-const connectDB = require('./config/db');
+const connectDB = require('./config/db'); // Import the DB connection function
 
 const ordersRoutes = require('./routes/orders');
 const clientsRoutes = require('./routes/clients');
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/auth'); // Authentication Routes
 
-const app = express();
+const app = express(); // Initialize app first
 const port = process.env.PORT || 3000;
 
-// Middleware (Use only express.json and express.urlencoded)
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] }));
+app.use(bodyParser.json());
 
-// Session Middleware
+// Session Middleware (Needed for Passport.js)
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'mysecret',
+  secret: process.env.SESSION_SECRET || 'mysecret', // Secure your session secret
   resave: false,
   saveUninitialized: true
 }));
@@ -42,7 +44,7 @@ app.get('/', (req, res) => {
 // API Routes
 app.use('/clients', clientsRoutes);
 app.use('/orders', ordersRoutes);
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes); // Add authentication routes
 
 // Swagger Docs
 const swaggerDocument = JSON.parse(fs.readFileSync(__dirname + '/swagger.json', 'utf-8'));
